@@ -30,7 +30,7 @@ class SessionController {
           type: 'Session.Accounts.Unauthorized.Session',
           error: 'Ocorreu um erro durante a execução.',
           message: 'Email e/ou senha inválidos.',
-          instance: '/api/v1/auth/login',
+          instance: '/auth/login',
         });
       }
 
@@ -52,7 +52,7 @@ class SessionController {
         error: 'Ocorreu um erro durante a execução.',
         message: 'Ocorreu um erro na autenticação.',
         details: e.message,
-        instance: '/api/v1/auth/login',
+        instance: '/auth/login',
       });
     }
   }

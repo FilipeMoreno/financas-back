@@ -6,11 +6,10 @@ class Users extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        username: Sequelize.STRING,
         email: Sequelize.STRING,
+        password: Sequelize.STRING,
         password_user: Sequelize.VIRTUAL,
         confirm_password: Sequelize.VIRTUAL,
-        password: Sequelize.STRING,
       },
       {
         sequelize,
@@ -26,7 +25,7 @@ class Users extends Model {
   }
 
   checkPassword(password) {
-    return bcrypt.compare(password, this.password_hash);
+    return bcrypt.compare(password, this.password);
   }
 }
 
