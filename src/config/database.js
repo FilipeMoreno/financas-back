@@ -25,7 +25,7 @@ module.exports = {
     dateStrings: true,
     typeCast: true,
     // ssl: { rejectUnauthorized: false },
-    ssl: true,
+    ssl: process.env.DB_SSL || false,
   },
   timezone: TIMEZONE,
 };
