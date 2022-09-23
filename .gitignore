@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+node_modules/
+.devcontainer/
+developer/
+.env
+postgres_data/
+
+__tests__/coverage/*
+
+tmp/uploads/file/*
+tmp/uploads/img/*
+!tmp/.gitkeep
+

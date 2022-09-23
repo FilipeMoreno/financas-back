@@ -1,0 +1,22 @@
+// Controller
+import NOME from '../../app/controllers/NOME';
+
+// Validação
+import NOME from '../../app/validators/NOME/NOME';
+
+// Permissões
+import NOME from '../../app/Roles/NOME';
+
+export default (routes, auth) => {
+  // Routes Public
+
+  routes.get('/teste', AutoresController.getId);
+
+  // Routes Private
+
+  routes.post(
+    '/teste',
+    auth,
+    NOME,
+  );
+};
