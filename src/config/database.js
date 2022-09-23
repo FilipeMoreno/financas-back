@@ -7,7 +7,7 @@ module.exports = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
+  // port: process.env.DB_PORT,
   dialect: process.env.DB_DIALECT || 'postgres',
   protocol: 'postgres',
   storage: './__tests__/database.sqlite',
@@ -25,7 +25,7 @@ module.exports = {
     dateStrings: true,
     typeCast: true,
     // ssl: { rejectUnauthorized: false },
-    ssl: false,
+    ssl: true,
   },
   timezone: TIMEZONE,
 };
