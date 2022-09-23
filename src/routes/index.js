@@ -5,11 +5,11 @@ import authMiddleware from '../app/middleware/auth';
 
 // Pastas das Rotas
 
-// import UsersRoute from './Usuarios';
+import UsersRoute from './Users';
 
 const routes = new Router();
 
-// UsersRoute(routes, authMiddleware, manutencaoMiddleware);
+UsersRoute(routes, authMiddleware);
 
 routes.get('*', (req, res) =>
   res.json({
