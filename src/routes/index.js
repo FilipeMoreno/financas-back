@@ -19,6 +19,7 @@ routes.get('*', (req, res) =>
   res.json({
     title: 'Finanças API',
     version: `${process.env.VERSION}`,
+    success: true,
     status: 'OK',
     runtime_mode: `${process.env.NODE_ENV}`,
   })
