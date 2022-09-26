@@ -5,11 +5,13 @@ import authMiddleware from '../app/middleware/auth';
 
 // Pastas das Rotas
 
+import CategoriesRoute from './Categories';
 import UsersRoute from './Users';
 
 const routes = new Router();
 
 UsersRoute(routes, authMiddleware);
+CategoriesRoute(routes, authMiddleware);
 
 routes.get('*', (req, res) =>
   res.json({
