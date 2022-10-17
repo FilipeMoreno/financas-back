@@ -2,12 +2,13 @@ import Sequelize from 'sequelize';
 
 import Banks from '../app/models/Banks';
 import Categories from '../app/models/Categories';
+import CreditCardsFlags from '../app/models/CreditCardsFlags';
 import Users from '../app/models/Users';
 
 // CONFIGS
 import databaseConfig from '../config/database';
 
-const models = [Users, Categories, Banks];
+const models = [Users, Categories, Banks, CreditCardsFlags];
 
 class Database {
   constructor() {
