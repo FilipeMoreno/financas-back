@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 
+import Accounts from '../app/models/Accounts';
 import AccountsTypes from '../app/models/AccountsTypes';
 import Banks from '../app/models/Banks';
 import Categories from '../app/models/Categories';
@@ -9,7 +10,14 @@ import Users from '../app/models/Users';
 // CONFIGS
 import databaseConfig from '../config/database';
 
-const models = [Users, Categories, Banks, AccountsTypes, CreditCardsFlags];
+const models = [
+  Users,
+  Categories,
+  Banks,
+  Accounts,
+  AccountsTypes,
+  CreditCardsFlags,
+];
 
 class Database {
   constructor() {
