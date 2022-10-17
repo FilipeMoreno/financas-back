@@ -11,7 +11,6 @@ import databaseConfig from '../config/database';
 
 const models = [Users, Categories, Banks, AccountsTypes, CreditCardsFlags];
 
-
 class Database {
   constructor() {
     this.init();
