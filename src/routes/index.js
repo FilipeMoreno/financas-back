@@ -5,6 +5,7 @@ import authMiddleware from '../app/middleware/auth';
 
 // Pastas das Rotas
 
+import AccountsRoute from './Accounts';
 import AccountTypesRoute from './AccountsTypes';
 import BanksRoute from './Banks';
 import CategoriesRoute from './Categories';
@@ -16,6 +17,7 @@ UsersRoute(routes, authMiddleware);
 CategoriesRoute(routes, authMiddleware);
 BanksRoute(routes, authMiddleware);
 AccountTypesRoute(routes, authMiddleware);
+AccountsRoute(routes, authMiddleware);
 
 routes.get('*', (req, res) =>
   res.json({
