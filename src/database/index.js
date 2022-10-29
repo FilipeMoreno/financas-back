@@ -5,6 +5,7 @@ import AccountsTypes from '../app/models/AccountsTypes';
 import Banks from '../app/models/Banks';
 import Categories from '../app/models/Categories';
 import CreditCardsFlags from '../app/models/CreditCardsFlags';
+import Transactions from '../app/models/Transactions';
 import Users from '../app/models/Users';
 
 // CONFIGS
@@ -17,6 +18,7 @@ const models = [
   Accounts,
   AccountsTypes,
   CreditCardsFlags,
+  Transactions,
 ];
 
 class Database {
