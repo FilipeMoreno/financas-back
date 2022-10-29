@@ -43,6 +43,7 @@ class AccountsController {
             attributes: ['id', 'name', 'icon_url', 'color'],
           },
         ],
+        order: [['name', 'ASC']],
       });
 
       return res.json(accounts);

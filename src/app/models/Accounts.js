@@ -1,5 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
+import Despesas from './Transactions';
+
 class Accounts extends Model {
   static init(sequelize) {
     super.init(
