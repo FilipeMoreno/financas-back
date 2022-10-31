@@ -1,9 +1,10 @@
-import { Op } from 'sequelize';
+import { Op, Sequelize } from 'sequelize';
 
 import Accounts from '../models/Accounts';
 import AccountsTypes from '../models/AccountsTypes';
 import Banks from '../models/Banks';
 import Categories from '../models/Categories';
+import Orcamentos from '../models/Orcamentos';
 import Transactions from '../models/Transactions';
 
 class DashboardController {
@@ -27,6 +28,9 @@ class DashboardController {
       let totalReceitas = 0;
 
       let receitasMaisDespesas = 0;
+
+      let orcamentosTotal = 0;
+      let orcamentosTotalGastos = 0;
 
       const accounts = await Accounts.findAll({
         include: [
@@ -108,6 +112,21 @@ class DashboardController {
         where: { efetivada: true },
       });
 
+      // const todasTransacoesMes = await Transactions.findAll({
+      //   where: {
+      //     [Op.and]: [
+      //       Sequelize.where(
+      //         Sequelize.fn('MONTH', Sequelize.col('data')),
+      //         new Date().getMonth() + 1
+      //       ),
+      //       Sequelize.where(
+      //         Sequelize.fn('YEAR', Sequelize.col('data')),
+      //         new Date().getFullYear
+      //       ),
+      //     ],
+      //   },
+      // });
+
       todasTransacoes.map((transacao) => {
         totalMovimentacao += transacao.valor;
         if (transacao.tipo === 'RECEITA') {
@@ -121,6 +140,24 @@ class DashboardController {
       });
 
       receitasMaisDespesas = totalReceitas + totalDespesas;
+
+      const orcamentos = await Orcamentos.findAll({
+        where: {
+          mes: new Date().getMonth() + 1,
+          ano: new Date().getFullYear(),
+        },
+      });
+
+      orcamentos.map((orcamento) => {
+        orcamentosTotal += orcamento.valor;
+        todasTransacoes.map((transacao) => {
+          if (transacao.tipo === 'DESPESA') {
+            if (transacao.categoria_id === orcamento.categoria_id) {
+              orcamentosTotalGastos += transacao.valor;
+            }
+          }
+        });
+      });
 
       return res.json({
         saldo: saldoConta,
@@ -139,6 +176,8 @@ class DashboardController {
         qtdReceitas,
         qtdDespesas,
         receitasMaisDespesas,
+        orcamentosTotal,
+        orcamentosTotalGastos,
       });
     } catch (e) {
       return res.status(400).json({

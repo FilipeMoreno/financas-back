@@ -1,10 +1,16 @@
 import Categories from '../models/Categories';
+import Subcategorias from '../models/Subcategorias';
 
 class CategoriesController {
   // Busca todas as categorias cadastradas
   async getAllCategories(req, res) {
     try {
-      const categories = await Categories.findAll();
+      const categories = await Categories.findAll({
+        include: {
+          model: Subcategorias,
+          as: 'subcategorias',
+        },
+      });
       if (categories.length === 0) {
         return res.status(404).json({
           status: 404,

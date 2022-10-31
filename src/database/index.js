@@ -5,6 +5,8 @@ import AccountsTypes from '../app/models/AccountsTypes';
 import Banks from '../app/models/Banks';
 import Categories from '../app/models/Categories';
 import CreditCardsFlags from '../app/models/CreditCardsFlags';
+import Orcamentos from '../app/models/Orcamentos';
+import Subcategorias from '../app/models/Subcategorias';
 import Transactions from '../app/models/Transactions';
 import Users from '../app/models/Users';
 
@@ -19,6 +21,8 @@ const models = [
   AccountsTypes,
   CreditCardsFlags,
   Transactions,
+  Subcategorias,
+  Orcamentos,
 ];
 
 class Database {

@@ -11,6 +11,7 @@ import BanksRoute from './Banks';
 import CategoriesRoute from './Categories';
 import DashboardRoute from './Dashboard';
 import DespesasRoute from './Despesas';
+import OrcamentosRoute from './Orcamentos';
 import ReceitasRoute from './Receitas';
 import RelatoriosRoute from './Relatorios';
 import TransacoesRoute from './Transactions';
@@ -28,6 +29,7 @@ DespesasRoute(routes, authMiddleware);
 TransacoesRoute(routes, authMiddleware);
 ReceitasRoute(routes, authMiddleware);
 RelatoriosRoute(routes, authMiddleware);
+OrcamentosRoute(routes, authMiddleware);
 
 routes.get('*', (req, res) =>
   res.json({
