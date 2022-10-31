@@ -33,7 +33,7 @@ OrcamentosRoute(routes, authMiddleware);
 
 routes.get('*', (req, res) =>
   res.json({
-    title: 'Finanças API',
+    title: 'NoControle - API',
     version: `${process.env.VERSION}`,
     success: true,
     status: 'OK',
