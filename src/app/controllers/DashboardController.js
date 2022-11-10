@@ -139,7 +139,7 @@ class DashboardController {
         }
       });
 
-      receitasMaisDespesas = totalReceitas + totalDespesas;
+      receitasMaisDespesas = totalReceitas - totalDespesas;
 
       const orcamentos = await Orcamentos.findAll({
         where: {

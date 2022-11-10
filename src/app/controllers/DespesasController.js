@@ -1,9 +1,11 @@
 import Accounts from '../models/Accounts';
+import SaldoTransacoes from '../models/SaldoTransacoes';
 import Transactions from '../models/Transactions';
 
 class DespesasController {
   async createDespesa(req, res) {
     try {
+      let saldoConta = 0;
       const {
         valor,
         data,
@@ -37,10 +39,19 @@ class DespesasController {
       });
 
       const getConta = await Accounts.findOne({ where: { id: conta_id } });
+      const getAllAccounts = await Accounts.findAll();
 
       const novoSaldo = parseFloat(getConta.balance) - parseFloat(valor);
 
       if (efetivada) {
+        getAllAccounts.map((account) => {
+          saldoConta += account.balance;
+        });
+        const createSaldoTransacoes = await SaldoTransacoes.create({
+          saldo_anterior: saldoConta,
+          novo_saldo: saldoConta - parseFloat(valor),
+          transacao_id: despesa.id,
+        });
         await getConta.update({ balance: novoSaldo });
       }
       return res.json(despesa);
@@ -61,6 +72,10 @@ class DespesasController {
     try {
       const despesas = await Transactions.findAll({
         where: { tipo: 'DESPESA' },
+        include: {
+          model: SaldoTransacoes,
+          as: 'anteriorxnovo',
+        },
       });
       return res.json(despesas);
     } catch (e) {

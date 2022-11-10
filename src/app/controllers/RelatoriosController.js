@@ -1,6 +1,7 @@
 import { Op, Sequelize } from 'sequelize';
 
 import Categories from '../models/Categories';
+import SaldoTransacoes from '../models/SaldoTransacoes';
 import Transactions from '../models/Transactions';
 
 class RelatoriosController {
@@ -149,6 +150,26 @@ class RelatoriosController {
         amountDespesasPrevisto,
         amountReceitasPrevisto,
       });
+    } catch (e) {
+      return res
+        .status(400)
+        .json({ error: 'Ocorreu um erro.', message: e.message });
+    }
+  }
+
+  async getNovoSaldoSaldoAnterior(req, res) {
+    try {
+      const getSaldoTransacoes = await SaldoTransacoes.findAll({
+        order: [['createdAt', 'desc']],
+        include: [
+          {
+            model: Transactions,
+            as: 'transacao',
+          },
+        ],
+      });
+
+      return res.json(getSaldoTransacoes);
     } catch (e) {
       return res
         .status(400)

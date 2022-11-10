@@ -25,4 +25,9 @@ export default (routes) => {
     '/relatorios/transacoes/receitasxdespesas',
     RelatoriosController.getReceitasXDespesas
   );
+
+  routes.get(
+    '/relatorios/saldoanteriorxnovo',
+    RelatoriosController.getNovoSaldoSaldoAnterior
+  );
 };

@@ -1,9 +1,12 @@
 import Accounts from '../models/Accounts';
+import SaldoTransacoes from '../models/SaldoTransacoes';
 import Transactions from '../models/Transactions';
 
 class ReceitasController {
   async createReceita(req, res) {
     try {
+      let saldoConta = 0;
+
       const {
         valor,
         data,
@@ -38,10 +41,20 @@ class ReceitasController {
       });
 
       const getConta = await Accounts.findOne({ where: { id: conta_id } });
+      const getAllAccounts = await Accounts.findAll();
 
       const novoSaldo = parseFloat(getConta.balance) + parseFloat(valor);
 
       if (efetivada) {
+        getAllAccounts.map((account) => {
+          saldoConta += account.balance;
+        });
+        const createSaldoTransacoes = await SaldoTransacoes.create({
+          saldo_anterior: saldoConta,
+          novo_saldo: saldoConta + parseFloat(valor),
+          transacao_id: receita.id,
+        });
+
         await getConta.update({ balance: novoSaldo });
       }
 

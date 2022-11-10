@@ -7,4 +7,9 @@ export default (routes) => {
     '/transacoes/efetivar/:id',
     TransactionsController.efetivarTransacao
   );
+
+  routes.delete(
+    '/transacoes/remover/:id',
+    TransactionsController.deletarTransacao
+  );
 };

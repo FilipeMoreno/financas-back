@@ -40,6 +40,11 @@ class Transactions extends Model {
       foreignKey: 'conta_id',
       as: 'conta',
     });
+
+    this.hasOne(models.SaldoTransacoes, {
+      foreignKey: 'transacao_id',
+      as: 'anteriorxnovo',
+    });
   }
 }
 
